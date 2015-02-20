@@ -7,32 +7,44 @@ Files are named with respect to the section of the standard they apply.
     
 The files included in this directory are as follows:
 
-```
-  MTConnectAssets_1.2.xsd
-  MTConnectAssets_1.3.xsd
-  MTConnectAssets_1.3_1.0.xsd
-```  
+Version 1.0
+===
 
 ```
   MTConnectDevices_1.0.xsd
+  MTConnectStreams_1.0.xsd
+  MTConnectError_1.0.xsd
+```
+
+Version 1.1
+===
+
+```
   MTConnectDevices_1.1.xsd
+  MTConnectStreams_1.1.xsd
+  MTConnectError_1.1.xsd
+```
+
+Version 1.2
+===
+
+```
+  MTConnectAssets_1.2.xsd
   MTConnectDevices_1.2.xsd
+  MTConnectStreams_1.2.xsd
+  MTConnectError_1.2.xsd
+```
+
+Version 1.3
+===
+
+```
+  MTConnectAssets_1.3.xsd
+  MTConnectAssets_1.3_1.0.xsd
   MTConnectDevices_1.3.xsd
   MTConnectDevices_1.3_1.0.xsd
-```
-
-```
-  MTConnectStreams_1.0.xsd
-  MTConnectStreams_1.1.xsd
-  MTConnectStreams_1.2.xsd
   MTConnectStreams_1.3.xsd
   MTConnectStreams_1.3_1.0.xsd
-```
-
-```
-  MTConnectError_1.0.xsd
-  MTConnectError_1.1.xsd
-  MTConnectError_1.2.xsd
   MTConnectError_1.3.xsd
   MTConnectError_1.3_1.0.xsd
 ```
