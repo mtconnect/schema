@@ -3,7 +3,7 @@ MTConnect Schema Files Versions 1.0 - 1.3
 
 Files are named with respect to the section of the standard they apply. 
 
-  MTConnect<Part>_<Version>[_<XSD Schema Version>].xsd
+  ```MTConnect<Part>_<Version>[_<XSD Schema Version>].xsd```
     
 The files included in this directory are as follows:
 
