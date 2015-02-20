@@ -1,5 +1,5 @@
 MTConnect Schema Files Versions 1.0 - 1.3
---------
+===
 
 Files are named with respect to the section of the standard they apply. 
 
@@ -8,7 +8,7 @@ Files are named with respect to the section of the standard they apply.
 The files included in this directory are as follows:
 
 Version 1.0
-===
+---
 
 ```
   MTConnectDevices_1.0.xsd
@@ -17,7 +17,7 @@ Version 1.0
 ```
 
 Version 1.1
-===
+---
 
 ```
   MTConnectDevices_1.1.xsd
@@ -26,7 +26,7 @@ Version 1.1
 ```
 
 Version 1.2
-===
+---
 
 ```
   MTConnectAssets_1.2.xsd
@@ -35,8 +35,8 @@ Version 1.2
   MTConnectError_1.2.xsd
 ```
 
-Version 1.3
-===
+Version 1.3 (With XSD 1.0 compatible files)
+---
 
 ```
   MTConnectAssets_1.3.xsd
