@@ -1,5 +1,37 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<xs:schema targetNamespace='urn:mtconnect.com:MTConnectStreams:1.1' elementFormDefault='qualified' attributeFormDefault='unqualified' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:mt='urn:mtconnect.com:MTConnectStreams:1.1' xmlns='urn:mtconnect.com:MTConnectStreams:1.1'>
+<!--
+Copyright (c) 2008-2010, AMT – The Association For Manufacturing Technology (“AMT”)
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the AMT nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+DISCLAIMER OF WARRANTY. ALL MTCONNECT MATERIALS AND SPECIFICATIONS PROVIDED
+BY AMT, MTCONNECT OR ANY PARTICIPANT TO YOU OR ANY PARTY ARE PROVIDED "AS IS"
+AND WITHOUT ANY WARRANTY OF ANY KIND. AMT, MTCONNECT, AND EACH OF THEIR
+RESPECTIVE MEMBERS, OFFICERS, DIRECTORS, AFFILIATES, SPONSORS, AND AGENTS
+(COLLECTIVELY, THE "AMT PARTIES") AND PARTICIPANTS MAKE NO REPRESENTATION OR
+WARRANTY OF ANY KIND WHATSOEVER RELATING TO THESE MATERIALS, INCLUDING, WITHOUT
+LIMITATION, ANY EXPRESS OR IMPLIED WARRANTY OF NONINFRINGEMENT,
+MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+LIMITATION OF LIABILITY. IN NO EVENT SHALL AMT, MTCONNECT, ANY OTHER AMT
+PARTY, OR ANY PARTICIPANT BE LIABLE FOR THE COST OF PROCURING SUBSTITUTE GOODS
+OR SERVICES, LOST PROFITS, LOSS OF USE, LOSS OF DATA OR ANY INCIDENTAL,
+CONSEQUENTIAL, INDIRECT, SPECIAL OR PUNITIVE DAMAGES OR OTHER DIRECT DAMAGES,
+WHETHER UNDER CONTRACT, TORT, WARRANTY OR OTHERWISE, ARISING IN ANY WAY OUT OF
+THIS AGREEMENT, USE OR INABILITY TO USE MTCONNECT MATERIALS, WHETHER OR NOT
+SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
+-->
+<xs:schema targetNamespace='urn:mtconnect.org:MTConnectStreams:1.1' elementFormDefault='qualified' attributeFormDefault='unqualified' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:mt='urn:mtconnect.org:MTConnectStreams:1.1' xmlns='urn:mtconnect.org:MTConnectStreams:1.1'>
   <xs:element name='MTConnectStreams' type='MTConnectStreamsType'>
     <xs:annotation>
       <xs:documentation>
@@ -120,7 +152,17 @@
     </xs:annotation>
     <xs:restriction base='xs:string'/>
   </xs:simpleType>
-  <xs:simpleType name='DataItemEnumType'>
+  <xs:simpleType name='DataItemExtType'>
+    <xs:annotation>
+      <xs:documentation>
+        An extension point for data item types
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'>
+      <xs:pattern value='x:[A-Z_0-9]+'/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name='DataItemEnumTypeEnum'>
     <xs:annotation>
       <xs:documentation>
         The types of measurements available
@@ -134,13 +176,16 @@
       <xs:enumeration value='ANGLE'/>
       <xs:enumeration value='ANGULAR_ACCELERATION'/>
       <xs:enumeration value='ANGULAR_VELOCITY'/>
+      <xs:enumeration value='AVAILABILITY'/>
       <xs:enumeration value='BLOCK'/>
       <xs:enumeration value='CODE'/>
       <xs:enumeration value='DISPLACEMENT'/>
       <xs:enumeration value='DIRECTION'/>
-      <xs:enumeration value='DOOR_STATUS'/>
+      <xs:enumeration value='DOOR_STATE'/>
+      <xs:enumeration value='EMERGENCY_STOP'/>
       <xs:enumeration value='EXECUTION'/>
       <xs:enumeration value='FREQUENCY'/>
+      <xs:enumeration value='PART_COUNT'/>
       <xs:enumeration value='PART_ID'/>
       <xs:enumeration value='PATH_FEEDRATE'/>
       <xs:enumeration value='PATH_POSITION'/>
@@ -148,25 +193,42 @@
       <xs:enumeration value='LINE'/>
       <xs:enumeration value='CONTROLLER_MODE'/>
       <xs:enumeration value='LOAD'/>
-      <xs:enumeration value='OTHER'/>
+      <xs:enumeration value='MESSAGE'/>
       <xs:enumeration value='POSITION'/>
       <xs:enumeration value='POWER_STATUS'/>
+      <xs:enumeration value='POWER_STATE'/>
       <xs:enumeration value='PRESSURE'/>
       <xs:enumeration value='PROGRAM'/>
       <xs:enumeration value='ROTARY_MODE'/>
+      <xs:enumeration value='COUPLED_AXES'/>
+      <xs:enumeration value='AXIS_COUPLING'/>
       <xs:enumeration value='SPINDLE_SPEED'/>
-      <xs:enumeration value='STATUS'/>
       <xs:enumeration value='TEMPERATURE'/>
       <xs:enumeration value='TORQUE'/>
       <xs:enumeration value='TOOL_ID'/>
       <xs:enumeration value='VELOCITY'/>
       <xs:enumeration value='VIBRATION'/>
       <xs:enumeration value='VOLTAGE'/>
-      <xs:enumeration value='WATTS'/>
+      <xs:enumeration value='WATTAGE'/>
       <xs:enumeration value='WORKHOLDING_ID'/>
+      <xs:enumeration value='COMMUNICATIONS'/>
+      <xs:enumeration value='LOGIC_PROGRAM'/>
+      <xs:enumeration value='MOTION_PROGRAM'/>
+      <xs:enumeration value='HARDWARE'/>
+      <xs:enumeration value='SYSTEM'/>
+      <xs:enumeration value='LEVEL'/>
+      <xs:enumeration value='ACTUATOR'/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name='DataItemSubEnumType'>
+  <xs:simpleType name='DataItemEnumType'>
+    <xs:annotation>
+      <xs:documentation>
+        The types of measurements available
+      </xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes='DataItemEnumTypeEnum DataItemExtType'/>
+  </xs:simpleType>
+  <xs:simpleType name='DataItemSubEnumTypeEnum'>
     <xs:annotation>
       <xs:documentation>
         The sub-types for a measurement
@@ -175,17 +237,26 @@
     <xs:restriction base='xs:string'>
       <xs:enumeration value='ACTUAL'/>
       <xs:enumeration value='COMMANDED'/>
-      <xs:enumeration value='DISTANCE'/>
       <xs:enumeration value='MAXIMUM'/>
-      <xs:enumeration value='MAX_OVERRIDE'/>
       <xs:enumeration value='MINIMUM'/>
       <xs:enumeration value='OTHER'/>
       <xs:enumeration value='OVERRIDE'/>
+      <xs:enumeration value='PROBE'/>
       <xs:enumeration value='TARGET'/>
       <xs:enumeration value='GOOD'/>
       <xs:enumeration value='BAD'/>
       <xs:enumeration value='ALL'/>
+      <xs:enumeration value='LINE'/>
+      <xs:enumeration value='CONTROL'/>
     </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name='DataItemSubEnumType'>
+    <xs:annotation>
+      <xs:documentation>
+        The sub-types for a measurement
+      </xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes='DataItemSubEnumTypeEnum DataItemExtType'/>
   </xs:simpleType>
   <xs:simpleType name='StationType'>
     <xs:annotation>
@@ -262,6 +333,14 @@
     </xs:annotation>
     <xs:restriction base='xs:ID'/>
   </xs:simpleType>
+  <xs:simpleType name='NativeCodeType'>
+    <xs:annotation>
+      <xs:documentation>
+        An Condition code as defined by the component
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'/>
+  </xs:simpleType>
   <xs:complexType name='StreamsType'>
     <xs:annotation>
       <xs:documentation>
@@ -313,13 +392,21 @@
       <xs:element name='Events' maxOccurs='1' minOccurs='0' type='EventsType'>
         <xs:annotation>
           <xs:documentation>
-            A collection of events and alarms
+            A collection of events
+          </xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name='Condition' maxOccurs='1' minOccurs='0' type='ConditionListType'>
+        <xs:annotation>
+          <xs:documentation>
+            The representation of the devices condition
           </xs:documentation>
         </xs:annotation>
       </xs:element>
     </xs:sequence>
     <xs:attribute name='componentId' type='ComponentIdType' use='required'/>
     <xs:attribute name='name' type='NameType' use='required'/>
+    <xs:attribute name='nativeName' type='NameType' use='optional'/>
     <xs:attribute name='component' type='NameType' use='required'/>
     <xs:attribute name='uuid' type='UuidType' use='optional'/>
   </xs:complexType>
@@ -343,6 +430,16 @@
       <xs:element maxOccurs='unbounded' minOccurs='1' ref='Event'/>
     </xs:sequence>
   </xs:complexType>
+  <xs:complexType name='ConditionListType'>
+    <xs:annotation>
+      <xs:documentation>
+        The condition of the device
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element maxOccurs='unbounded' minOccurs='1' ref='Condition'/>
+    </xs:sequence>
+  </xs:complexType>
   <xs:complexType name='ResultType' abstract='true'>
     <xs:annotation>
       <xs:documentation>
@@ -354,7 +451,7 @@
         <xs:attribute name='sequence' type='SequenceType' use='required'/>
         <xs:attribute name='subType' type='DataItemSubEnumType' use='optional'/>
         <xs:attribute name='timestamp' type='TimestampType' use='required'/>
-        <xs:attribute name='name' type='NameType' use='required'/>
+        <xs:attribute name='name' type='NameType' use='optional'/>
         <xs:attribute name='dataItemId' type='DataItemIdType' use='required'/>
       </xs:extension>
     </xs:simpleContent>
@@ -1017,6 +1114,14 @@
     </xs:annotation>
     <xs:restriction base='xs:string'/>
   </xs:simpleType>
+  <xs:simpleType name='MessageValueType'>
+    <xs:annotation>
+      <xs:documentation>
+        A message
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'/>
+  </xs:simpleType>
   <xs:simpleType name='AxesListValueType'>
     <xs:annotation>
       <xs:documentation>
@@ -1039,7 +1144,7 @@
       <xs:enumeration value='UNAVAILABLE'/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name='PowerStatusValueType'>
+  <xs:simpleType name='PowerStateValueType'>
     <xs:annotation>
       <xs:documentation>
         A power status
@@ -1075,10 +1180,11 @@
       <xs:enumeration value='AUTOMATIC'/>
       <xs:enumeration value='MANUAL'/>
       <xs:enumeration value='MANUAL_DATA_INPUT'/>
+      <xs:enumeration value='SEMI_AUTOMATIC'/>
       <xs:enumeration value='UNAVAILABLE'/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name='DoorStatusValueType'>
+  <xs:simpleType name='DoorStateValueType'>
     <xs:annotation>
       <xs:documentation>
         The status of a door
@@ -1090,7 +1196,7 @@
       <xs:enumeration value='UNAVAILABLE'/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name='RotaryFunctionValueType'>
+  <xs:simpleType name='RotaryModeValueType'>
     <xs:annotation>
       <xs:documentation>
         The rotary functions
@@ -1100,6 +1206,43 @@
       <xs:enumeration value='SPINDLE'/>
       <xs:enumeration value='INDEX'/>
       <xs:enumeration value='CONTOUR'/>
+      <xs:enumeration value='UNAVAILABLE'/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name='EmergencyStopValueType'>
+    <xs:annotation>
+      <xs:documentation>
+        ESTOP values
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value='TRIGGERED'/>
+      <xs:enumeration value='ARMED'/>
+      <xs:enumeration value='UNAVAILABLE'/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name='AxesCouplingValueType'>
+    <xs:annotation>
+      <xs:documentation>
+        The method for axes coupling
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value='TANDEM'/>
+      <xs:enumeration value='SYCHRONOUS'/>
+      <xs:enumeration value='MASTER'/>
+      <xs:enumeration value='SLAVE'/>
+      <xs:enumeration value='UNAVAILABLE'/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name='AvailabilityValueType'>
+    <xs:annotation>
+      <xs:documentation>
+        Possible values for availability data item
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value='AVAILABLE'/>
       <xs:enumeration value='UNAVAILABLE'/>
     </xs:restriction>
   </xs:simpleType>
@@ -1123,7 +1266,7 @@
   <xs:complexType name='CodeType'>
     <xs:annotation>
       <xs:documentation>
-        The program code
+        DEPRECATED: The program code
       </xs:documentation>
     </xs:annotation>
     <xs:simpleContent>
@@ -1133,7 +1276,7 @@
   <xs:element name='Code' substitutionGroup='Event' type='CodeType'>
     <xs:annotation>
       <xs:documentation>
-        The program code
+        DEPRECATED: The program code
       </xs:documentation>
     </xs:annotation>
   </xs:element>
@@ -1176,7 +1319,7 @@
   <xs:complexType name='PowerStatusType'>
     <xs:annotation>
       <xs:documentation>
-        The components power status
+        DEPRECATED: The components power status
       </xs:documentation>
     </xs:annotation>
     <xs:simpleContent>
@@ -1190,7 +1333,28 @@
   <xs:element name='PowerStatus' substitutionGroup='Event' type='PowerStatusType'>
     <xs:annotation>
       <xs:documentation>
-        The components power status
+        DEPRECATED: The components power status
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='PowerStateType'>
+    <xs:annotation>
+      <xs:documentation>
+        The components power state
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:restriction base='EventType'>
+        <xs:enumeration value='ON'/>
+        <xs:enumeration value='OFF'/>
+        <xs:enumeration value='UNAVAILABLE'/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='PowerState' substitutionGroup='Event' type='PowerStateType'>
+    <xs:annotation>
+      <xs:documentation>
+        The components power state
       </xs:documentation>
     </xs:annotation>
   </xs:element>
@@ -1285,6 +1449,7 @@
         <xs:enumeration value='AUTOMATIC'/>
         <xs:enumeration value='MANUAL'/>
         <xs:enumeration value='MANUAL_DATA_INPUT'/>
+        <xs:enumeration value='SEMI_AUTOMATIC'/>
         <xs:enumeration value='UNAVAILABLE'/>
       </xs:restriction>
     </xs:simpleContent>
@@ -1330,7 +1495,7 @@
       </xs:documentation>
     </xs:annotation>
   </xs:element>
-  <xs:complexType name='DoorStatusType'>
+  <xs:complexType name='DoorStateType'>
     <xs:annotation>
       <xs:documentation>
         The status of the door
@@ -1344,7 +1509,7 @@
       </xs:restriction>
     </xs:simpleContent>
   </xs:complexType>
-  <xs:element name='DoorStatus' substitutionGroup='Event' type='DoorStatusType'>
+  <xs:element name='DoorState' substitutionGroup='Event' type='DoorStateType'>
     <xs:annotation>
       <xs:documentation>
         The status of the door
@@ -1368,7 +1533,7 @@
       </xs:documentation>
     </xs:annotation>
   </xs:element>
-  <xs:complexType name='RotaryFunctionType'>
+  <xs:complexType name='RotaryModeType'>
     <xs:annotation>
       <xs:documentation>
         The function of the rotary axis
@@ -1383,7 +1548,7 @@
       </xs:restriction>
     </xs:simpleContent>
   </xs:complexType>
-  <xs:element name='RotaryFunction' substitutionGroup='Event' type='RotaryFunctionType'>
+  <xs:element name='RotaryMode' substitutionGroup='Event' type='RotaryModeType'>
     <xs:annotation>
       <xs:documentation>
         The function of the rotary axis
@@ -1409,10 +1574,10 @@
       </xs:documentation>
     </xs:annotation>
   </xs:element>
-  <xs:complexType name='SlaveAxesType'>
+  <xs:complexType name='CoupledAxesType'>
     <xs:annotation>
       <xs:documentation>
-        The list of axes in use
+        The list of associated axes
       </xs:documentation>
     </xs:annotation>
     <xs:simpleContent>
@@ -1421,10 +1586,258 @@
       </xs:restriction>
     </xs:simpleContent>
   </xs:complexType>
-  <xs:element name='SlaveAxes' substitutionGroup='Event' type='SlaveAxesType'>
+  <xs:element name='CoupledAxes' substitutionGroup='Event' type='CoupledAxesType'>
     <xs:annotation>
       <xs:documentation>
-        The list of axes in use
+        The list of associated axes
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='AxesCouplingType'>
+    <xs:annotation>
+      <xs:documentation>
+        The way the axes are associated
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:restriction base='EventType'>
+        <xs:enumeration value='TANDEM'/>
+        <xs:enumeration value='SYCHRONOUS'/>
+        <xs:enumeration value='MASTER'/>
+        <xs:enumeration value='SLAVE'/>
+        <xs:enumeration value='UNAVAILABLE'/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='AxesCoupling' substitutionGroup='Event' type='AxesCouplingType'>
+    <xs:annotation>
+      <xs:documentation>
+        The way the axes are associated
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='MessageType'>
+    <xs:annotation>
+      <xs:documentation>
+        A generic message
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base='EventType'>
+        <xs:attribute name='nativeCode' type='NativeCodeType' use='optional'/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='Message' substitutionGroup='Event' type='MessageType'>
+    <xs:annotation>
+      <xs:documentation>
+        A generic message
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='EmergencyStopType'>
+    <xs:annotation>
+      <xs:documentation>
+        Emergency Stop status
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:restriction base='EventType'>
+        <xs:enumeration value='TRIGGERED'/>
+        <xs:enumeration value='ARMED'/>
+        <xs:enumeration value='UNAVAILABLE'/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='EmergencyStop' substitutionGroup='Event' type='EmergencyStopType'>
+    <xs:annotation>
+      <xs:documentation>
+        Emergency Stop status
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='AvailabilityType'>
+    <xs:annotation>
+      <xs:documentation>
+        The availability of the component
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:restriction base='EventType'>
+        <xs:enumeration value='AVAILABLE'/>
+        <xs:enumeration value='UNAVAILABLE'/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='Availability' substitutionGroup='Event' type='AvailabilityType'>
+    <xs:annotation>
+      <xs:documentation>
+        The availability of the component
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='LinePowerStateType'>
+    <xs:annotation>
+      <xs:documentation>
+        The state of the line power
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base='PowerStateType'/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='LinePowerState' substitutionGroup='PowerState' type='LinePowerStateType'>
+    <xs:annotation>
+      <xs:documentation>
+        The state of the line power
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='ControlPowerStateType'>
+    <xs:annotation>
+      <xs:documentation>
+        The state of the line power
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base='PowerStateType'/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='ControlPowerState' substitutionGroup='PowerState' type='ControlPowerStateType'>
+    <xs:annotation>
+      <xs:documentation>
+        The state of the line power
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:simpleType name='ConditionDescriptionType'>
+    <xs:annotation>
+      <xs:documentation>
+        The description of the Condition
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'/>
+  </xs:simpleType>
+  <xs:simpleType name='NativeSeverityType'>
+    <xs:annotation>
+      <xs:documentation>
+        The device&apos;s severity
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'/>
+  </xs:simpleType>
+  <xs:simpleType name='QualifierType'>
+    <xs:annotation>
+      <xs:documentation>
+        A qualifier for the condition
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'>
+      <xs:enumeration value='HIGH'/>
+      <xs:enumeration value='LOW'/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name='ConditionType' abstract='true'>
+    <xs:annotation>
+      <xs:documentation>
+        An abstract indicator of the device&apos;s condition
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base='ConditionDescriptionType'>
+        <xs:attribute name='sequence' type='SequenceType' use='required'/>
+        <xs:attribute name='timestamp' type='TimestampType' use='required'/>
+        <xs:attribute name='name' type='NameType' use='optional'/>
+        <xs:attribute name='dataItemId' type='DataItemIdType' use='required'/>
+        <xs:attribute name='type' type='DataItemEnumType' use='required'/>
+        <xs:attribute name='nativeCode' type='NativeCodeType' use='optional'/>
+        <xs:attribute name='nativeSeverity' type='NativeSeverityType' use='optional'/>
+        <xs:attribute name='qualifier' type='QualifierType' use='optional'/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='Condition' abstract='true' type='ConditionType'>
+    <xs:annotation>
+      <xs:documentation>
+        An abstract indicator of the device&apos;s condition
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='UnavailableType'>
+    <xs:annotation>
+      <xs:documentation>
+        The conditon can not be determined.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base='ConditionType'/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='Unavailable' substitutionGroup='Condition' type='UnavailableType'>
+    <xs:annotation>
+      <xs:documentation>
+        The conditon can not be determined.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='NormalType'>
+    <xs:annotation>
+      <xs:documentation>
+        The item being monitored is operating normally and no action is
+        required. Also indicates a cleared condition.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base='ConditionType'/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='Normal' substitutionGroup='Condition' type='NormalType'>
+    <xs:annotation>
+      <xs:documentation>
+        The item being monitored is operating normally and no action is
+        required. Also indicates a cleared condition.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='WarningType'>
+    <xs:annotation>
+      <xs:documentation>
+        he item being monitored is moving into the abnormal range and should be
+        observed. No action required at this time.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base='ConditionType'/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='Warning' substitutionGroup='Condition' type='WarningType'>
+    <xs:annotation>
+      <xs:documentation>
+        he item being monitored is moving into the abnormal range and should be
+        observed. No action required at this time.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='FaultType'>
+    <xs:annotation>
+      <xs:documentation>
+        The item has failed an intervention is required to return to a normal
+        condition. Transition to a normal condition indicates that the Fault has
+        been cleared. Something that needs to be acknowledged. Sometimes noted
+        as an alarm.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:extension base='ConditionType'/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='Fault' substitutionGroup='Condition' type='FaultType'>
+    <xs:annotation>
+      <xs:documentation>
+        The item has failed an intervention is required to return to a normal
+        condition. Transition to a normal condition indicates that the Fault has
+        been cleared. Something that needs to be acknowledged. Sometimes noted
+        as an alarm.
       </xs:documentation>
     </xs:annotation>
   </xs:element>
@@ -1462,7 +1875,7 @@
       <xs:enumeration value='OTHER'/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name='NotificationStateType'>
+  <xs:simpleType name='AlarmStateType'>
     <xs:annotation>
       <xs:documentation>
         The active or cleared state of the notification
@@ -1486,7 +1899,7 @@
       <xs:enumeration value='INFORMATION'/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:complexType name='NotificationType'>
+  <xs:complexType name='AlarmType'>
     <xs:annotation>
       <xs:documentation>
         An Notifcation event
@@ -1496,83 +1909,15 @@
       <xs:extension base='EventType'>
         <xs:attribute name='code' type='NotifcationCodeType' use='required'/>
         <xs:attribute name='severity' type='SeverityType' use='optional'/>
-        <xs:attribute name='state' type='NotificationStateType' use='optional'/>
+        <xs:attribute name='state' type='AlarmStateType' use='optional'/>
         <xs:attribute name='nativeCode' type='NativeNotifcationCodeType' use='required'/>
       </xs:extension>
     </xs:simpleContent>
   </xs:complexType>
-  <xs:element name='Notification' substitutionGroup='Event' type='NotificationType'>
+  <xs:element name='Alarm' substitutionGroup='Event' type='AlarmType'>
     <xs:annotation>
       <xs:documentation>
         An Notifcation event
-      </xs:documentation>
-    </xs:annotation>
-  </xs:element>
-  <xs:complexType name='ErrorType'>
-    <xs:annotation>
-      <xs:documentation>
-        A status message
-      </xs:documentation>
-    </xs:annotation>
-    <xs:simpleContent>
-      <xs:extension base='NotificationType'/>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:element name='Error' substitutionGroup='Notification' type='ErrorType'>
-    <xs:annotation>
-      <xs:documentation>
-        A status message
-      </xs:documentation>
-    </xs:annotation>
-  </xs:element>
-  <xs:complexType name='WarningType'>
-    <xs:annotation>
-      <xs:documentation>
-        A status message
-      </xs:documentation>
-    </xs:annotation>
-    <xs:simpleContent>
-      <xs:extension base='NotificationType'/>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:element name='Warning' substitutionGroup='Notification' type='WarningType'>
-    <xs:annotation>
-      <xs:documentation>
-        A status message
-      </xs:documentation>
-    </xs:annotation>
-  </xs:element>
-  <xs:complexType name='MessageType'>
-    <xs:annotation>
-      <xs:documentation>
-        A status message
-      </xs:documentation>
-    </xs:annotation>
-    <xs:simpleContent>
-      <xs:extension base='NotificationType'/>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:element name='Message' substitutionGroup='Notification' type='MessageType'>
-    <xs:annotation>
-      <xs:documentation>
-        A status message
-      </xs:documentation>
-    </xs:annotation>
-  </xs:element>
-  <xs:complexType name='AlarmType'>
-    <xs:annotation>
-      <xs:documentation>
-        An Alarm message
-      </xs:documentation>
-    </xs:annotation>
-    <xs:simpleContent>
-      <xs:extension base='NotificationType'/>
-    </xs:simpleContent>
-  </xs:complexType>
-  <xs:element name='Alarm' substitutionGroup='Notification' type='AlarmType'>
-    <xs:annotation>
-      <xs:documentation>
-        An Alarm message
       </xs:documentation>
     </xs:annotation>
   </xs:element>

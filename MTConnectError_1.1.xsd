@@ -1,5 +1,37 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<xs:schema targetNamespace='urn:mtconnect.com:MTConnectError:1.1' elementFormDefault='qualified' attributeFormDefault='unqualified' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:mt='urn:mtconnect.com:MTConnectError:1.1' xmlns='urn:mtconnect.com:MTConnectError:1.1'>
+<!--
+Copyright (c) 2008-2010, AMT – The Association For Manufacturing Technology (“AMT”)
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright
+      notice, this list of conditions and the following disclaimer in the
+      documentation and/or other materials provided with the distribution.
+    * Neither the name of the AMT nor the
+      names of its contributors may be used to endorse or promote products
+      derived from this software without specific prior written permission.
+
+DISCLAIMER OF WARRANTY. ALL MTCONNECT MATERIALS AND SPECIFICATIONS PROVIDED
+BY AMT, MTCONNECT OR ANY PARTICIPANT TO YOU OR ANY PARTY ARE PROVIDED "AS IS"
+AND WITHOUT ANY WARRANTY OF ANY KIND. AMT, MTCONNECT, AND EACH OF THEIR
+RESPECTIVE MEMBERS, OFFICERS, DIRECTORS, AFFILIATES, SPONSORS, AND AGENTS
+(COLLECTIVELY, THE "AMT PARTIES") AND PARTICIPANTS MAKE NO REPRESENTATION OR
+WARRANTY OF ANY KIND WHATSOEVER RELATING TO THESE MATERIALS, INCLUDING, WITHOUT
+LIMITATION, ANY EXPRESS OR IMPLIED WARRANTY OF NONINFRINGEMENT,
+MERCHANTABILITY, OR FITNESS FOR A PARTICULAR PURPOSE. 
+
+LIMITATION OF LIABILITY. IN NO EVENT SHALL AMT, MTCONNECT, ANY OTHER AMT
+PARTY, OR ANY PARTICIPANT BE LIABLE FOR THE COST OF PROCURING SUBSTITUTE GOODS
+OR SERVICES, LOST PROFITS, LOSS OF USE, LOSS OF DATA OR ANY INCIDENTAL,
+CONSEQUENTIAL, INDIRECT, SPECIAL OR PUNITIVE DAMAGES OR OTHER DIRECT DAMAGES,
+WHETHER UNDER CONTRACT, TORT, WARRANTY OR OTHERWISE, ARISING IN ANY WAY OUT OF
+THIS AGREEMENT, USE OR INABILITY TO USE MTCONNECT MATERIALS, WHETHER OR NOT
+SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
+-->
+<xs:schema targetNamespace='urn:mtconnect.org:MTConnectError:1.1' elementFormDefault='qualified' attributeFormDefault='unqualified' xmlns:xs='http://www.w3.org/2001/XMLSchema' xmlns:mt='urn:mtconnect.org:MTConnectError:1.1' xmlns='urn:mtconnect.org:MTConnectError:1.1'>
   <xs:element name='MTConnectError' type='MTConnectErrorType'>
     <xs:annotation>
       <xs:documentation>
@@ -104,14 +136,6 @@
     </xs:annotation>
     <xs:restriction base='xs:float'/>
   </xs:simpleType>
-  <xs:simpleType name='PathType'>
-    <xs:annotation>
-      <xs:documentation>
-        An XML path
-      </xs:documentation>
-    </xs:annotation>
-    <xs:restriction base='xs:string'/>
-  </xs:simpleType>
   <xs:simpleType name='IDType'>
     <xs:annotation>
       <xs:documentation>
@@ -128,7 +152,17 @@
     </xs:annotation>
     <xs:restriction base='xs:string'/>
   </xs:simpleType>
-  <xs:simpleType name='DataItemEnumType'>
+  <xs:simpleType name='DataItemExtType'>
+    <xs:annotation>
+      <xs:documentation>
+        An extension point for data item types
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'>
+      <xs:pattern value='x:[A-Z_0-9]+'/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name='DataItemEnumTypeEnum'>
     <xs:annotation>
       <xs:documentation>
         The types of measurements available
@@ -136,38 +170,65 @@
     </xs:annotation>
     <xs:restriction base='xs:string'>
       <xs:enumeration value='ACCELERATION'/>
+      <xs:enumeration value='ACTIVE_AXES'/>
       <xs:enumeration value='ALARM'/>
       <xs:enumeration value='AMPERAGE'/>
       <xs:enumeration value='ANGLE'/>
       <xs:enumeration value='ANGULAR_ACCELERATION'/>
       <xs:enumeration value='ANGULAR_VELOCITY'/>
+      <xs:enumeration value='AVAILABILITY'/>
       <xs:enumeration value='BLOCK'/>
       <xs:enumeration value='CODE'/>
       <xs:enumeration value='DISPLACEMENT'/>
       <xs:enumeration value='DIRECTION'/>
+      <xs:enumeration value='DOOR_STATE'/>
+      <xs:enumeration value='EMERGENCY_STOP'/>
       <xs:enumeration value='EXECUTION'/>
       <xs:enumeration value='FREQUENCY'/>
+      <xs:enumeration value='PART_COUNT'/>
+      <xs:enumeration value='PART_ID'/>
       <xs:enumeration value='PATH_FEEDRATE'/>
+      <xs:enumeration value='PATH_POSITION'/>
       <xs:enumeration value='AXIS_FEEDRATE'/>
       <xs:enumeration value='LINE'/>
       <xs:enumeration value='CONTROLLER_MODE'/>
       <xs:enumeration value='LOAD'/>
-      <xs:enumeration value='OTHER'/>
+      <xs:enumeration value='MESSAGE'/>
       <xs:enumeration value='POSITION'/>
       <xs:enumeration value='POWER_STATUS'/>
+      <xs:enumeration value='POWER_STATE'/>
       <xs:enumeration value='PRESSURE'/>
       <xs:enumeration value='PROGRAM'/>
+      <xs:enumeration value='ROTARY_MODE'/>
+      <xs:enumeration value='COUPLED_AXES'/>
+      <xs:enumeration value='AXIS_COUPLING'/>
       <xs:enumeration value='SPINDLE_SPEED'/>
-      <xs:enumeration value='STATUS'/>
       <xs:enumeration value='TEMPERATURE'/>
       <xs:enumeration value='TORQUE'/>
+      <xs:enumeration value='TOOL_ID'/>
       <xs:enumeration value='VELOCITY'/>
       <xs:enumeration value='VIBRATION'/>
       <xs:enumeration value='VOLTAGE'/>
-      <xs:enumeration value='WATTS'/>
+      <xs:enumeration value='WATTAGE'/>
+      <xs:enumeration value='WORKHOLDING_ID'/>
+      <xs:enumeration value='COMMUNICATIONS'/>
+      <xs:enumeration value='LOGIC_PROGRAM'/>
+      <xs:enumeration value='MOTION_PROGRAM'/>
+      <xs:enumeration value='HARDWARE'/>
+      <xs:enumeration value='SYSTEM'/>
+      <xs:enumeration value='LEVEL'/>
+      <xs:enumeration value='ACTUATOR'/>
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name='DataItemSubEnumType'>
+  <xs:simpleType name='DataItemEnumType'>
+    <xs:annotation>
+      <xs:documentation>
+        The types of measurements available
+      </xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes='DataItemEnumTypeEnum DataItemExtType'/>
+  </xs:simpleType>
+  <xs:simpleType name='DataItemSubEnumTypeEnum'>
     <xs:annotation>
       <xs:documentation>
         The sub-types for a measurement
@@ -176,17 +237,26 @@
     <xs:restriction base='xs:string'>
       <xs:enumeration value='ACTUAL'/>
       <xs:enumeration value='COMMANDED'/>
-      <xs:enumeration value='DISTANCE'/>
       <xs:enumeration value='MAXIMUM'/>
-      <xs:enumeration value='MAX_OVERRIDE'/>
       <xs:enumeration value='MINIMUM'/>
       <xs:enumeration value='OTHER'/>
       <xs:enumeration value='OVERRIDE'/>
+      <xs:enumeration value='PROBE'/>
       <xs:enumeration value='TARGET'/>
       <xs:enumeration value='GOOD'/>
       <xs:enumeration value='BAD'/>
       <xs:enumeration value='ALL'/>
+      <xs:enumeration value='LINE'/>
+      <xs:enumeration value='CONTROL'/>
     </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name='DataItemSubEnumType'>
+    <xs:annotation>
+      <xs:documentation>
+        The sub-types for a measurement
+      </xs:documentation>
+    </xs:annotation>
+    <xs:union memberTypes='DataItemSubEnumTypeEnum DataItemExtType'/>
   </xs:simpleType>
   <xs:complexType name='HeaderType'>
     <xs:annotation>
