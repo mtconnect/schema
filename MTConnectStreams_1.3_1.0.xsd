@@ -338,6 +338,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       <xs:enumeration value='PART_ASSET_ID'/>
       <xs:enumeration value='PROGRAM_EDIT'/>
       <xs:enumeration value='PROGRAM_EDIT_NAME'/>
+      <xs:enumeration value='CLOCK_TIME'/>
       <xs:enumeration value='CHUCK_STATE'/>
       <xs:enumeration value='END_OF_BAR'/>
       <xs:enumeration value='AUXILIARY_END_OF_BAR'/>
