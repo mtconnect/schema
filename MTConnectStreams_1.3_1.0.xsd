@@ -309,7 +309,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       <xs:enumeration value='CONCENTRATION'/>
       <xs:enumeration value='CONDUCTIVITY'/>
       <xs:enumeration value='DISPLACEMENT'/>
-      <xs:enumeration value='ELECTRICAL_POWER'/>
+      <xs:enumeration value='ELECTRICAL_ENERGY'/>
       <xs:enumeration value='FILL_LEVEL'/>
       <xs:enumeration value='FLOW'/>
       <xs:enumeration value='LINEAR_FORCE'/>
