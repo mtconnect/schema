@@ -137,7 +137,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
     </xs:annotation>
     <xs:restriction base='xs:string'/>
   </xs:simpleType>
-  <xs:simpleType name='SerialNumberType'>
+  <xs:simpleType name='SerialNumberAttrType'>
     <xs:annotation>
       <xs:documentation>
         A serial number for a piece of equipment
@@ -303,7 +303,6 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       <xs:enumeration value='TILT'/>
       <xs:enumeration value='TORQUE'/>
       <xs:enumeration value='VELOCITY'/>
-      <xs:enumeration value='VIBRATION'/>
       <xs:enumeration value='VISCOSITY'/>
       <xs:enumeration value='VOLTAGE'/>
       <xs:enumeration value='VOLT_AMPERE'/>
@@ -410,49 +409,74 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base='xs:string'>
+      <xs:enumeration value='ABSOLUTE'/>
       <xs:enumeration value='ACTUAL'/>
+      <xs:enumeration value='ACTION'/>
+      <xs:enumeration value='ALL'/>
+      <xs:enumeration value='ALTERNATING'/>
+      <xs:enumeration value='AUXILIARY'/>
+      <xs:enumeration value='A_SCALE'/>
+      <xs:enumeration value='BAD'/>
+      <xs:enumeration value='BRINELL'/>
+      <xs:enumeration value='B_SCALE'/>
       <xs:enumeration value='COMMANDED'/>
+      <xs:enumeration value='CONTROL'/>
+      <xs:enumeration value='C_SCALE'/>
+      <xs:enumeration value='DELAY'/>
+      <xs:enumeration value='DIRECT'/>
+      <xs:enumeration value='DRY_RUN'/>
+      <xs:enumeration value='DYNAMIC'/>
+      <xs:enumeration value='D_SCALE'/>
+      <xs:enumeration value='FIXTURE'/>
+      <xs:enumeration value='GOOD'/>
+      <xs:enumeration value='JOG'/>
+      <xs:enumeration value='INCREMENTAL'/>
+      <xs:enumeration value='KINETIC'/>
+      <xs:enumeration value='LATERAL'/>
+      <xs:enumeration value='LEEB'/>
+      <xs:enumeration value='LENGTH'/>
+      <xs:enumeration value='LINE'/>
+      <xs:enumeration value='LINEAR'/>
+      <xs:enumeration value='LOADED'/>
+      <xs:enumeration value='MACHINE_AXIS_LOCK'/>
+      <xs:enumeration value='MAINTENANCE'/>
+      <xs:enumeration value='MANUAL_UNCLAMP'/>
       <xs:enumeration value='MAXIMUM'/>
       <xs:enumeration value='MINIMUM'/>
-      <xs:enumeration value='OTHER'/>
-      <xs:enumeration value='OVERRIDE'/>
-      <xs:enumeration value='PROBE'/>
-      <xs:enumeration value='TARGET'/>
-      <xs:enumeration value='GOOD'/>
-      <xs:enumeration value='BAD'/>
-      <xs:enumeration value='ALL'/>
-      <xs:enumeration value='LINE'/>
-      <xs:enumeration value='CONTROL'/>
-      <xs:enumeration value='ALTERNATING'/>
-      <xs:enumeration value='DIRECT'/>
-      <xs:enumeration value='WEIGHT'/>
-      <xs:enumeration value='VOLUME'/>
+      <xs:enumeration value='MOHS'/>
       <xs:enumeration value='MOLE'/>
-      <xs:enumeration value='KINETIC'/>
-      <xs:enumeration value='DYNAMIC'/>
+      <xs:enumeration value='MOTION'/>
       <xs:enumeration value='NO_SCALE'/>
-      <xs:enumeration value='A_SCALE'/>
-      <xs:enumeration value='B_SCALE'/>
-      <xs:enumeration value='C_SCALE'/>
-      <xs:enumeration value='D_SCALE'/>
+      <xs:enumeration value='OPERATOR'/>
+      <xs:enumeration value='OPERATING'/>
+      <xs:enumeration value='OPTIONAL_STOP'/>
+      <xs:enumeration value='TOOL_CHANGE_STOP'/>
+      <xs:enumeration value='OVERRIDE'/>
+      <xs:enumeration value='PRIMARY'/>
+      <xs:enumeration value='PROBE'/>
+      <xs:enumeration value='PROGRAMMED'/>
+      <xs:enumeration value='POWERED'/>
+      <xs:enumeration value='PROCESS'/>
+      <xs:enumeration value='RADIAL'/>
+      <xs:enumeration value='RAPID'/>
+      <xs:enumeration value='RELATIVE'/>
+      <xs:enumeration value='REMAINING'/>
       <xs:enumeration value='REQUEST'/>
       <xs:enumeration value='RESPONSE'/>
-      <xs:enumeration value='REMAINING'/>
-      <xs:enumeration value='JOG'/>
-      <xs:enumeration value='RAPID'/>
-      <xs:enumeration value='PROGRAMMED'/>
-      <xs:enumeration value='PRIMARY'/>
-      <xs:enumeration value='AUXILIARY'/>
-      <xs:enumeration value='MANUAL_UNCLAMP'/>
-      <xs:enumeration value='WORKPIECE'/>
-      <xs:enumeration value='FIXTURE'/>
-      <xs:enumeration value='TOOL'/>
-      <xs:enumeration value='ABSOLUTE'/>
-      <xs:enumeration value='RELATIVE'/>
-      <xs:enumeration value='TOOL_EDGE'/>
-      <xs:enumeration value='TOOL_GROUP'/>
+      <xs:enumeration value='ROCKWELL'/>
       <xs:enumeration value='ROTARY'/>
-      <xs:enumeration value='LINEAR'/>
+      <xs:enumeration value='SET_UP'/>
+      <xs:enumeration value='SHORE'/>
+      <xs:enumeration value='SINGLE_BLOCK'/>
+      <xs:enumeration value='STANDARD'/>
+      <xs:enumeration value='SWITCHED'/>
+      <xs:enumeration value='TARGET'/>
+      <xs:enumeration value='TOOL'/>
+      <xs:enumeration value='USABLE'/>
+      <xs:enumeration value='VERTICAL'/>
+      <xs:enumeration value='VICKERS'/>
+      <xs:enumeration value='VOLUME'/>
+      <xs:enumeration value='WORKING'/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name='DataItemSubEnumType'>
@@ -1093,7 +1117,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
             </xs:element>
           </xs:choice>
         </xs:sequence>
-        <xs:attribute name='serialNumber' type='SerialNumberType' use='required'/>
+        <xs:attribute name='serialNumber' type='SerialNumberAttrType' use='required'/>
         <xs:attribute name='manufacturers' type='ManufacturersType' use='optional'/>
         <xs:attribute name='cuttingToolId' type='CuttingToolIdType' use='required'/>
       </xs:extension>
