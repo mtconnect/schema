@@ -470,15 +470,15 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base='xs:string'>
-      <xs:enumeration value='MINIMUM'/>
-      <xs:enumeration value='MAXIMUM'/>
       <xs:enumeration value='AVERAGE'/>
-      <xs:enumeration value='STANDARD_DEVIATION'/>
-      <xs:enumeration value='ROOT_MEAN_SQUARE'/>
-      <xs:enumeration value='MEAN'/>
-      <xs:enumeration value='MODE'/>
-      <xs:enumeration value='RANGE'/>
       <xs:enumeration value='KURTOSIS'/>
+      <xs:enumeration value='MAXIMUM'/>
+      <xs:enumeration value='MEDIAN'/>
+      <xs:enumeration value='MODE'/>
+      <xs:enumeration value='MINIMUM'/>
+      <xs:enumeration value='RANGE'/>
+      <xs:enumeration value='ROOT_MEAN_SQUARE'/>
+      <xs:enumeration value='STANDARD_DEVIATION'/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name='DataItemStatisticsType'>
@@ -509,6 +509,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       <xs:enumeration value='AMPERE'/>
       <xs:enumeration value='CELSIUS'/>
       <xs:enumeration value='COUNT'/>
+      <xs:enumeration value='DECIBEL'/>
       <xs:enumeration value='DEGREE'/>
       <xs:enumeration value='DEGREE/SECOND'/>
       <xs:enumeration value='DEGREE/SECOND^2'/>
@@ -517,28 +518,27 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       <xs:enumeration value='KILOGRAM'/>
       <xs:enumeration value='LITER'/>
       <xs:enumeration value='LITER/SECOND'/>
+      <xs:enumeration value='MICRO_RADIAN'/>
       <xs:enumeration value='MILLIMETER'/>
       <xs:enumeration value='MILLIMETER/SECOND'/>
       <xs:enumeration value='MILLIMETER/SECOND^2'/>
       <xs:enumeration value='MILLIMETER_3D'/>
       <xs:enumeration value='NEWTON'/>
       <xs:enumeration value='NEWTON_METER'/>
+      <xs:enumeration value='OHM'/>
       <xs:enumeration value='PASCAL'/>
+      <xs:enumeration value='PASCAL_SECOND'/>
       <xs:enumeration value='PERCENT'/>
       <xs:enumeration value='PH'/>
       <xs:enumeration value='REVOLUTION/MINUTE'/>
       <xs:enumeration value='SECOND'/>
-      <xs:enumeration value='VOLT'/>
-      <xs:enumeration value='WATT'/>
-      <xs:enumeration value='OHM'/>
-      <xs:enumeration value='SOUND_LEVEL'/>
       <xs:enumeration value='SIEMENS/METER'/>
-      <xs:enumeration value='MICRO_RADIAN'/>
-      <xs:enumeration value='PASCAL_SECOND'/>
+      <xs:enumeration value='SOUND_LEVEL'/>
+      <xs:enumeration value='VOLT'/>
       <xs:enumeration value='VOLT_AMPERE'/>
       <xs:enumeration value='VOLT_AMPERE_REACTIVE'/>
+      <xs:enumeration value='WATT'/>
       <xs:enumeration value='WATT_SECOND'/>
-      <xs:enumeration value='DECIBEL'/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name='UnitsType'>
@@ -560,6 +560,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       <xs:enumeration value='AMPERE'/>
       <xs:enumeration value='CELSIUS'/>
       <xs:enumeration value='COUNT'/>
+      <xs:enumeration value='DECIBEL'/>
       <xs:enumeration value='DEGREE'/>
       <xs:enumeration value='DEGREE/SECOND'/>
       <xs:enumeration value='DEGREE/SECOND^2'/>
@@ -568,28 +569,27 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       <xs:enumeration value='KILOGRAM'/>
       <xs:enumeration value='LITER'/>
       <xs:enumeration value='LITER/SECOND'/>
+      <xs:enumeration value='MICRO_RADIAN'/>
       <xs:enumeration value='MILLIMETER'/>
       <xs:enumeration value='MILLIMETER/SECOND'/>
       <xs:enumeration value='MILLIMETER/SECOND^2'/>
       <xs:enumeration value='MILLIMETER_3D'/>
       <xs:enumeration value='NEWTON'/>
       <xs:enumeration value='NEWTON_METER'/>
+      <xs:enumeration value='OHM'/>
       <xs:enumeration value='PASCAL'/>
+      <xs:enumeration value='PASCAL_SECOND'/>
       <xs:enumeration value='PERCENT'/>
       <xs:enumeration value='PH'/>
       <xs:enumeration value='REVOLUTION/MINUTE'/>
       <xs:enumeration value='SECOND'/>
-      <xs:enumeration value='VOLT'/>
-      <xs:enumeration value='WATT'/>
-      <xs:enumeration value='OHM'/>
-      <xs:enumeration value='SOUND_LEVEL'/>
       <xs:enumeration value='SIEMENS/METER'/>
-      <xs:enumeration value='MICRO_RADIAN'/>
-      <xs:enumeration value='PASCAL_SECOND'/>
+      <xs:enumeration value='SOUND_LEVEL'/>
+      <xs:enumeration value='VOLT'/>
       <xs:enumeration value='VOLT_AMPERE'/>
       <xs:enumeration value='VOLT_AMPERE_REACTIVE'/>
+      <xs:enumeration value='WATT'/>
       <xs:enumeration value='WATT_SECOND'/>
-      <xs:enumeration value='DECIBEL'/>
       <xs:enumeration value='CENTIPOISE'/>
       <xs:enumeration value='DEGREE/MINUTE'/>
       <xs:enumeration value='FAHRENHEIT'/>
