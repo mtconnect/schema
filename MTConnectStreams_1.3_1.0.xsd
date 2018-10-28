@@ -2742,7 +2742,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       <xs:enumeration value='FEED_HOLD'/>
       <xs:enumeration value='PROGRAM_COMPLETED'/>
       <xs:enumeration value='PROGRAM_STOPPED'/>
-      <xs:enumeration value='OPTIONAL_STOP'/>
+      <xs:enumeration value='PROGRAM_OPTIONAL_STOP'/>
       <xs:enumeration value='UNAVAILABLE'/>
     </xs:restriction>
   </xs:simpleType>
@@ -3072,7 +3072,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
         <xs:enumeration value='FEED_HOLD'/>
         <xs:enumeration value='PROGRAM_COMPLETED'/>
         <xs:enumeration value='PROGRAM_STOPPED'/>
-        <xs:enumeration value='OPTIONAL_STOP'/>
+        <xs:enumeration value='PROGRAM_OPTIONAL_STOP'/>
         <xs:enumeration value='UNAVAILABLE'/>
       </xs:restriction>
     </xs:simpleContent>
