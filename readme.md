@@ -1,4 +1,4 @@
-MTConnect Schema Files Versions 1.0 - 1.3
+MTConnect Schema Files Versions 1.0 - 1.4
 ===
 
 Files are named with respect to the section of the standard they apply. 
@@ -49,8 +49,22 @@ Version 1.3 (With XSD 1.0 compatible files)
   MTConnectError_1.3_1.0.xsd
 ```
 
-Microsoft XML an many legacy XML parsers are not current on the XML Schema 1.1 standard accepted in 2012 by the w3c. The MTConnect standard takes advantage of the latest advances in extensibility to add additional properties in a regulated manor using the xs:any tag and specifying they tags must be from another namespace.
+Version 1.4 (With XSD 1.0 compatible files)
+---
 
-We are also using Schema Versioning from XML Schema 1.1 and will be creating new schema that use these new features as we move into 1.4 and beyond. There are many XML Parsers that now correctly handle XML Schema 1.1, namely Raptor from Altova and Xerces from Apache. If you must use Microsoft XML with validation turned on, then you must use the ...1.3_1.0.xsd files in the directory. 
+```
+  MTConnectAssets_1.4.xsd
+  MTConnectAssets_1.4_1.0.xsd
+  MTConnectDevices_1.4.xsd
+  MTConnectDevices_1.4_1.0.xsd
+  MTConnectStreams_1.4.xsd
+  MTConnectStreams_1.4_1.0.xsd
+  MTConnectError_1.4.xsd
+  MTConnectError_1.4_1.0.xsd
+```
 
-The 1.3_1.0.xsd files will support the MSXML parser and validation, but will not support the advance extensibility. If you want both, talk with Microsoft to update their parser.
+Microsoft XML and many legacy XML parsers are not current on the XML Schema 1.1 standard accepted in 2012 by the w3c. The MTConnect standard takes advantage of the latest advances in extensibility to add additional properties in a regulated manor using the xs:any tag and specifying the tags must be from another namespace.
+
+We are also using Schema Versioning from XML Schema 1.1 and will be creating new schema that use these new features as we move into 1.4 and beyond. There are many XML Parsers that now correctly handle XML Schema 1.1, namely Raptor from Altova and Xerces from Apache. If you must use Microsoft XML with validation turned on, then you must use the ...1.3_1.0.xsd or ...1.4_1.0.xsd files in the directory. 
+
+The 1.3_1.0.xsd and 1.4_1.0.xsd files will support the MSXML parser and validation, but will not support the advance extensibility. If you want both, talk with Microsoft to update their parser.
