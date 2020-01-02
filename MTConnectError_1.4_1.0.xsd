@@ -383,6 +383,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       <xs:enumeration value='BLOCK_COUNT'/>
       <xs:enumeration value='USER'/>
       <xs:enumeration value='PART_NUMBER'/>
+      <xs:enumeration value='EQUIPMENT_TIMER'/>
     </xs:restriction>
   </xs:simpleType>
   <xs:simpleType name='DataItemEnumType'>
