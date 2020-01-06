@@ -2819,6 +2819,14 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       <xs:pattern value='[+-]?\d+(\.\d+)?([Ee][+-]?\d+)?|UNAVAILABLE'/>
     </xs:restriction>
   </xs:simpleType>
+  <xs:simpleType name='StringValueType'>
+    <xs:annotation>
+      <xs:documentation>
+        A text value
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'/>
+  </xs:simpleType>
   <xs:simpleType name='DirectionValueType'>
     <xs:annotation>
       <xs:documentation>
@@ -3980,6 +3988,23 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
     <xs:annotation>
       <xs:documentation>
         The name of the program being edited
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='LineLabelType'>
+    <xs:annotation>
+      <xs:documentation>
+        An optional identifier for a BLOCK of code in a PROGRAM.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:restriction base='EventType'/>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='LineLabel' type='LineLabelType' substitutionGroup='Event'>
+    <xs:annotation>
+      <xs:documentation>
+        An optional identifier for a BLOCK of code in a PROGRAM.
       </xs:documentation>
     </xs:annotation>
   </xs:element>
