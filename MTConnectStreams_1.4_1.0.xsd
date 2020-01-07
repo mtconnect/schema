@@ -2827,6 +2827,16 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
     </xs:annotation>
     <xs:restriction base='xs:string'/>
   </xs:simpleType>
+  <xs:simpleType name='IntegerValueType'>
+    <xs:annotation>
+      <xs:documentation>
+        A integer numeric value
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base='xs:string'>
+      <xs:pattern value='[+-]?\d+|UNAVAILABLE'/>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:simpleType name='DirectionValueType'>
     <xs:annotation>
       <xs:documentation>
@@ -4005,6 +4015,31 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
     <xs:annotation>
       <xs:documentation>
         An optional identifier for a BLOCK of code in a PROGRAM.
+      </xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name='LineNumberType'>
+    <xs:annotation>
+      <xs:documentation>
+        A reference to the position of a block of program code within a control
+        program. The line number MAY represent either an absolute position
+        starting with the first line of the program or an incremental position
+        relative to the occurrence of the last LINE_LABEL.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:simpleContent>
+      <xs:restriction base='EventType'>
+        <xs:pattern value='[+-]?\d+|UNAVAILABLE'/>
+      </xs:restriction>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:element name='LineNumber' type='LineNumberType' substitutionGroup='Event'>
+    <xs:annotation>
+      <xs:documentation>
+        A reference to the position of a block of program code within a control
+        program. The line number MAY represent either an absolute position
+        starting with the first line of the program or an incremental position
+        relative to the occurrence of the last LINE_LABEL.
       </xs:documentation>
     </xs:annotation>
   </xs:element>
