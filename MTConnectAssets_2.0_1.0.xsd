@@ -14113,11 +14113,11 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
     </xs:annotation>
     <xs:union memberTypes='ApplicationTypeEnum ApplicationTypeExtType'/>
   </xs:simpleType>
-  <xs:complexType name='AbstractFileType'>
+  <xs:complexType name='FileArchetypeType'>
     <xs:annotation>
       <xs:documentation>
-        abstract {{block(Asset)}} that contains the common properties of the
-        {{block(File)}} and {{block(FileArchetype)}} types.
+        {{block(AbstractFile)}} type that provides information common to all
+        versions of a file. 
       </xs:documentation>
     </xs:annotation>
     <xs:complexContent>
@@ -14173,26 +14173,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name='AbstractFile' type='AbstractFileType' substitutionGroup='Asset'>
-    <xs:annotation>
-      <xs:documentation>
-        abstract {{block(Asset)}} that contains the common properties of the
-        {{block(File)}} and {{block(FileArchetype)}} types.
-      </xs:documentation>
-    </xs:annotation>
-  </xs:element>
-  <xs:complexType name='FileArchetypeType'>
-    <xs:annotation>
-      <xs:documentation>
-        {{block(AbstractFile)}} type that provides information common to all
-        versions of a file. 
-      </xs:documentation>
-    </xs:annotation>
-    <xs:complexContent>
-      <xs:extension base='AbstractFileType'/>
-    </xs:complexContent>
-  </xs:complexType>
-  <xs:element name='FileArchetype' type='FileArchetypeType' substitutionGroup='AbstractFile'>
+  <xs:element name='FileArchetype' type='FileArchetypeType' substitutionGroup='Asset'>
     <xs:annotation>
       <xs:documentation>
         {{block(AbstractFile)}} type that provides information common to all
@@ -14307,8 +14288,26 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       </xs:documentation>
     </xs:annotation>
     <xs:complexContent>
-      <xs:extension base='AbstractFileType'>
+      <xs:extension base='AssetType'>
         <xs:all>
+          <xs:element name='FileProperties' type='FilePropertiesType' minOccurs='0' maxOccurs='1'>
+            <xs:annotation>
+              <xs:documentation>
+                {{block(FileProperties)}} groups one or more
+                {{block(FileProperty)}} entities for a {{block(File)}}. See
+                {{sect(FileProperty)}}.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name='FileComments' type='FileCommentsType' minOccurs='0' maxOccurs='1'>
+            <xs:annotation>
+              <xs:documentation>
+                {{block(FileComments)}} groups one or more
+                {{block(FileComment)}} entities for a {{block(File)}}. See
+                {{sect(FileComment)}}.
+              </xs:documentation>
+            </xs:annotation>
+          </xs:element>
           <xs:element name='FileLocation' type='FileLocationType'>
             <xs:annotation>
               <xs:documentation>
@@ -14353,6 +14352,34 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
             </xs:annotation>
           </xs:element>
         </xs:all>
+        <xs:attribute name='name' type='FileNameType' use='required'>
+          <xs:annotation>
+            <xs:documentation>
+              The file name
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name='mediaType' type='FileMimeTypeType' use='required'>
+          <xs:annotation>
+            <xs:documentation>
+              The mime type of the file
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name='applicationCategory' type='ApplicationCategoryType' use='required'>
+          <xs:annotation>
+            <xs:documentation>
+              The classification of this file
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
+        <xs:attribute name='applicationType' type='ApplicationTypeType' use='required'>
+          <xs:annotation>
+            <xs:documentation>
+              The sub classification of this file
+            </xs:documentation>
+          </xs:annotation>
+        </xs:attribute>
         <xs:attribute name='size' type='FileSizeType' use='required'>
           <xs:annotation>
             <xs:documentation>
@@ -14377,7 +14404,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:element name='File' type='FileType' substitutionGroup='AbstractFile'>
+  <xs:element name='File' type='FileType' substitutionGroup='Asset'>
     <xs:annotation>
       <xs:documentation>
         {{block(AbstractFile)}} type that provides information about the
