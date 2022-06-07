@@ -4840,7 +4840,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
         Common base for data item relationship
       </xs:documentation>
     </xs:annotation>
-    <xs:attribute name='name' type='NameType' use='required'>
+    <xs:attribute name='name' type='NameType' use='optional'>
       <xs:annotation>
         <xs:documentation>
           A descriptive name associated with this Relationship
