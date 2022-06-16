@@ -197,7 +197,7 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
         The item&apos;s reference to the Device model composition
       </xs:documentation>
     </xs:annotation>
-    <xs:restriction base='xs:IDREF'/>
+    <xs:restriction base='xs:NMTOKEN'/>
   </xs:simpleType>
   <xs:simpleType name='DurationTimeType'>
     <xs:annotation>
