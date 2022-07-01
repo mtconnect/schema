@@ -365,11 +365,6 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
 			<xs:enumeration value="MATERIAL_LOAD"/>
 			<xs:enumeration value="MATERIAL_UNLOAD"/>
 			<xs:enumeration value="TRANSFORMATION"/>
-			<xs:enumeration value="SINGLE_BLOCK"/>
-			<xs:enumeration value="DRY_RUN"/>
-			<xs:enumeration value="OPTIONAL_STOP"/>
-			<xs:enumeration value="MACHINE_AXIS_LOCK"/>
-			<xs:enumeration value="TOOL_CHANGE_STOP"/>
 			<xs:enumeration value="LINE_NUMBER"/>
 			<xs:enumeration value="LINE_LABEL"/>
 			<xs:enumeration value="BLOCK_COUNT"/>
@@ -471,6 +466,11 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
 			<xs:enumeration value="SWITCHED"/>
 			<xs:enumeration value="VERTICAL"/>
 			<xs:enumeration value="VICKERS"/>
+			<xs:enumeration value="SINGLE_BLOCK"/>
+			<xs:enumeration value="DRY_RUN"/>
+			<xs:enumeration value="OPTIONAL_STOP"/>
+			<xs:enumeration value="MACHINE_AXIS_LOCK"/>
+			<xs:enumeration value="TOOL_CHANGE_STOP"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="DataItemSubEnumType">
@@ -4745,48 +4745,48 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
 		</xs:annotation>
 		<xs:simpleContent>
 			<xs:restriction base="EventType">
-			<xs:enumeration value="TANDEM">
-				<xs:annotation>
-					<xs:documentation>
+				<xs:enumeration value="TANDEM">
+					<xs:annotation>
+						<xs:documentation>
             Elements are physically connected to each other and operate as a
             single unit.
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SYNCHRONOUS">
-				<xs:annotation>
-					<xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="SYNCHRONOUS">
+					<xs:annotation>
+						<xs:documentation>
             Physical or logical parts which are not physically connected to each
             other but are operating together.
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="MASTER">
-				<xs:annotation>
-					<xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="MASTER">
+					<xs:annotation>
+						<xs:documentation>
             It provides information or state values that influences the
             operation of other dataitem of similar type.
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="SLAVE">
-				<xs:annotation>
-					<xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="SLAVE">
+					<xs:annotation>
+						<xs:documentation>
             The axis is a slave to the coupledaxes event
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="UNAVAILABLE">
-				<xs:annotation>
-					<xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="UNAVAILABLE">
+					<xs:annotation>
+						<xs:documentation>
             Value is indeterminate
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
+					</xs:annotation>
+				</xs:enumeration>
 			</xs:restriction>
 		</xs:simpleContent>
 	</xs:complexType>
-    <xs:element name="AxisCoupling" type="AxisCouplingType" substitutionGroup="Event">
+	<xs:element name="AxisCoupling" type="AxisCouplingType" substitutionGroup="Event">
 		<xs:annotation>
 			<xs:documentation>
         Describes the way the axes will be associated to each other. This is
@@ -4849,27 +4849,27 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
 		</xs:annotation>
 		<xs:simpleContent>
 			<xs:restriction base="EventType">
-			<xs:enumeration value="ACTIVE">
-				<xs:annotation>
-					<xs:documentation>
+				<xs:enumeration value="ACTIVE">
+					<xs:annotation>
+						<xs:documentation>
             The value of the data entity that is engaging.
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="INACTIVE">
-				<xs:annotation>
-					<xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="INACTIVE">
+					<xs:annotation>
+						<xs:documentation>
             The value of the data entity that is not engaging.
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="UNAVAILABLE">
-				<xs:annotation>
-					<xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="UNAVAILABLE">
+					<xs:annotation>
+						<xs:documentation>
             Value is indeterminate
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
+					</xs:annotation>
+				</xs:enumeration>
 			</xs:restriction>
 		</xs:simpleContent>
 	</xs:complexType>
@@ -4966,26 +4966,26 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
 		<xs:simpleContent>
 			<xs:restriction base="EventType">
 				<xs:enumeration value="ON">
-				<xs:annotation>
-					<xs:documentation>
+					<xs:annotation>
+						<xs:documentation>
             On state or value.
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="OFF">
-				<xs:annotation>
-					<xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="OFF">
+					<xs:annotation>
+						<xs:documentation>
             Off state or value.
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="UNAVAILABLE">
-				<xs:annotation>
-					<xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="UNAVAILABLE">
+					<xs:annotation>
+						<xs:documentation>
             Value is indeterminate
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
+					</xs:annotation>
+				</xs:enumeration>
 			</xs:restriction>
 		</xs:simpleContent>
 	</xs:complexType>
@@ -5007,26 +5007,26 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
 		<xs:simpleContent>
 			<xs:restriction base="EventType">
 				<xs:enumeration value="ON">
-				<xs:annotation>
-					<xs:documentation>
+					<xs:annotation>
+						<xs:documentation>
             On state or value.
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="OFF">
-				<xs:annotation>
-					<xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="OFF">
+					<xs:annotation>
+						<xs:documentation>
             Off state or value.
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
-			<xs:enumeration value="UNAVAILABLE">
-				<xs:annotation>
-					<xs:documentation>
+					</xs:annotation>
+				</xs:enumeration>
+				<xs:enumeration value="UNAVAILABLE">
+					<xs:annotation>
+						<xs:documentation>
             Value is indeterminate
           </xs:documentation>
-				</xs:annotation>
-			</xs:enumeration>
+					</xs:annotation>
+				</xs:enumeration>
 			</xs:restriction>
 		</xs:simpleContent>
 	</xs:complexType>

@@ -373,11 +373,6 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
 			<xs:enumeration value="MATERIAL_LOAD"/>
 			<xs:enumeration value="MATERIAL_UNLOAD"/>
 			<xs:enumeration value="TRANSFORMATION"/>
-			<xs:enumeration value="SINGLE_BLOCK"/>
-			<xs:enumeration value="DRY_RUN"/>
-			<xs:enumeration value="OPTIONAL_STOP"/>
-			<xs:enumeration value="MACHINE_AXIS_LOCK"/>
-			<xs:enumeration value="TOOL_CHANGE_STOP"/>
 			<xs:enumeration value="LINE_NUMBER"/>
 			<xs:enumeration value="LINE_LABEL"/>
 			<xs:enumeration value="BLOCK_COUNT"/>
@@ -479,6 +474,11 @@ SUCH PARTY HAD ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES.
 			<xs:enumeration value="SWITCHED"/>
 			<xs:enumeration value="VERTICAL"/>
 			<xs:enumeration value="VICKERS"/>
+			<xs:enumeration value="SINGLE_BLOCK"/>
+			<xs:enumeration value="DRY_RUN"/>
+			<xs:enumeration value="OPTIONAL_STOP"/>
+			<xs:enumeration value="MACHINE_AXIS_LOCK"/>
+			<xs:enumeration value="TOOL_CHANGE_STOP"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="DataItemSubEnumType">
